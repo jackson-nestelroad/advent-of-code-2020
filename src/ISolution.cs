@@ -1,0 +1,21 @@
+﻿using System;
+
+namespace AdventOfCode2020
+{
+    public interface ISolution
+    {
+        public abstract object PartA(string[] input);
+        public abstract object PartB(string[] input);
+    }
+
+    [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
+    public sealed class SolutionAttribute : Attribute
+    {
+        public SolutionAttribute(int day)
+        {
+            Day = day;
+        }
+
+        public int Day { get; }
+    }
+}

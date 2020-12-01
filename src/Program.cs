@@ -59,17 +59,25 @@ namespace AdventOfCode2020
 
             ISolution solution = (ISolution)Activator.CreateInstance(solutionClass);
 
-            // Run part A
-            var watch = System.Diagnostics.Stopwatch.StartNew();
-            object partA = solution.PartA(input);
-            watch.Stop();
-            Console.WriteLine($"Part A: {partA} (took {watch.ElapsedMilliseconds}ms)");
+            try
+            {
+                // Run part A
+                var watch = System.Diagnostics.Stopwatch.StartNew();
+                object partA = solution.PartA(input);
+                watch.Stop();
+                Console.WriteLine($"Part A: {partA} (took {watch.ElapsedMilliseconds}ms)");
 
-            // Run part B
-            watch.Restart();
-            object partB = solution.PartB(input);
-            watch.Stop();
-            Console.WriteLine($"Part B: {partB} (took {watch.ElapsedMilliseconds}ms)");
+                // Run part B
+                watch.Restart();
+                object partB = solution.PartB(input);
+                watch.Stop();
+                Console.WriteLine($"Part B: {partB} (took {watch.ElapsedMilliseconds}ms)");
+            }
+            catch (SolutionFailedException ex)
+            {
+                Console.Error.WriteLine(ex);
+                return 1;
+            }
 
             return 0;
         }

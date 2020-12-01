@@ -18,4 +18,10 @@ namespace AdventOfCode2020
 
         public int Day { get; }
     }
+
+    [Serializable()]
+    public class SolutionFailedException : Exception
+    {
+        public SolutionFailedException(string message = "Solution failed to produce any result.") : base(message) { }
+    }
 }

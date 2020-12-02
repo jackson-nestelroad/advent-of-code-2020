@@ -42,19 +42,18 @@ namespace AdventOfCode2020.Days
         {
             List<Password> passwords = ParseInput(input);
             return passwords
-                .Where(password =>
+                .Count(password =>
                 {
                     int count = password.Value.Count(c => c == password.Required);
                     return count >= password.Min && count <= password.Max;
-                })
-                .Count();
+                });
         }
 
         public object PartB(string[] input)
         {
             List<Password> passwords = ParseInput(input);
             return passwords
-                .Where(password =>
+                .Count(password =>
                 {
                     int first = password.Min - 1;
                     int second = password.Max - 1;
@@ -62,8 +61,7 @@ namespace AdventOfCode2020.Days
                         && second < password.Value.Length
                         && (password.Value[first] == password.Required || password.Value[second] == password.Required)
                         && password.Value[first] != password.Value[second];
-                })
-                .Count();
+                });
         }
     }
 }

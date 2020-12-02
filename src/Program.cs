@@ -73,7 +73,7 @@ namespace AdventOfCode2020
                 watch.Stop();
                 Console.WriteLine($"Part B: {partB} (took {watch.ElapsedMilliseconds}ms)");
             }
-            catch (SolutionFailedException ex)
+            catch (Exception ex)
             {
                 Console.Error.WriteLine(ex);
                 return 1;

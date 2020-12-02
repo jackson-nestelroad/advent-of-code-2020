@@ -24,4 +24,10 @@ namespace AdventOfCode2020
     {
         public SolutionFailedException(string message = "Solution failed to produce any result.") : base(message) { }
     }
+
+    [Serializable()]
+    public class InputParseException : Exception
+    {
+        public InputParseException(string message = "Solution failed to parse the given input.") : base(message) { }
+    }
 }

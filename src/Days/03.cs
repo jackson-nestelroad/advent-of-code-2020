@@ -16,13 +16,13 @@ namespace AdventOfCode2020.Days
             Tree = '#'
         }
 
-        private static int TreesHit(string[] input, Point slope)
+        private static int TreesHit(string[] map, Point2D slope)
         {
-            int frameWidth = input[0].Length;
+            int frameWidth = map[0].Length;
             int treeCount = 0;
-            for (int x = 0, y = 0; y < input.Length; y += slope.Y, x += slope.X)
+            for (Point2D pos = new Point2D(0, 0); pos.Y < map.Length; pos += slope)
             {
-                if (input[y][x % frameWidth] == (char)Tiles.Tree)
+                if (map[pos.Y][pos.X % frameWidth] == (char)Tiles.Tree)
                 {
                     ++treeCount;
                 }
@@ -32,18 +32,18 @@ namespace AdventOfCode2020.Days
 
         public object PartA(string[] input)
         {
-            return TreesHit(input, new Point(3, 1));
+            return TreesHit(input, new Point2D(3, 1));
         }
 
         public object PartB(string[] input)
         {
-            Point[] slopes =
+            Point2D[] slopes =
             {
-                new Point(1, 1),
-                new Point(3, 1),
-                new Point(5, 1),
-                new Point(7, 1),
-                new Point(1, 2)
+                new Point2D(1, 1),
+                new Point2D(3, 1),
+                new Point2D(5, 1),
+                new Point2D(7, 1),
+                new Point2D(1, 2)
             };
             return slopes.Select(slope => TreesHit(input, slope)).Aggregate(1L, (total, trees) => total * trees);
         }

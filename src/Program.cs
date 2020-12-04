@@ -38,7 +38,7 @@ namespace AdventOfCode2020
             var solutionClass = Array.Find(Assembly.GetEntryAssembly().GetTypes(), type =>
             {
                 return type.GetInterfaces().Contains(typeof(ISolution))
-                    && day == ((SolutionAttribute)Attribute.GetCustomAttribute(type, typeof(SolutionAttribute))).Day;
+                    && day == ((SolutionAttribute)Attribute.GetCustomAttribute(type, typeof(SolutionAttribute)))?.Day;
             });
 
             if (solutionClass == null)
@@ -55,8 +55,7 @@ namespace AdventOfCode2020
                 return 1;
             }
 
-            string[] input = File.ReadAllLines(fileName);
-
+            string input = File.ReadAllText(fileName);
             ISolution solution = (ISolution)Activator.CreateInstance(solutionClass);
 
             try

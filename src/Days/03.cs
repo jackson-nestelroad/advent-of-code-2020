@@ -30,13 +30,14 @@ namespace AdventOfCode2020.Days
             return treeCount;
         }
 
-        public object PartA(string[] input)
+        public object PartA(string input)
         {
-            return TreesHit(input, new Point2D(3, 1));
+            return TreesHit(input.Lines(), new Point2D(3, 1));
         }
 
-        public object PartB(string[] input)
+        public object PartB(string input)
         {
+            string[] map = input.Lines();
             Point2D[] slopes =
             {
                 new Point2D(1, 1),
@@ -45,7 +46,7 @@ namespace AdventOfCode2020.Days
                 new Point2D(7, 1),
                 new Point2D(1, 2)
             };
-            return slopes.Select(slope => TreesHit(input, slope)).Aggregate(1L, (total, trees) => total * trees);
+            return slopes.Select(slope => TreesHit(map, slope)).Aggregate(1L, (total, trees) => total * trees);
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventOfCode2020.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -18,9 +19,9 @@ namespace AdventOfCode2020.Days
 
         private static Regex Pattern = new Regex(@"(\d+)-(\d+) ([a-z]): ([a-z]+)");
 
-        private static List<Password> ParseInput(string[] input)
+        private static List<Password> ParseInput(string input)
         {
-            return input.Select(str =>
+            return input.Lines().Select(str =>
             {
                 var match = Pattern.Match(str);
                 if (!match.Success)
@@ -38,7 +39,7 @@ namespace AdventOfCode2020.Days
             }).ToList();
         }
 
-        public object PartA(string[] input)
+        public object PartA(string input)
         {
             List<Password> passwords = ParseInput(input);
             return passwords
@@ -49,7 +50,7 @@ namespace AdventOfCode2020.Days
                 });
         }
 
-        public object PartB(string[] input)
+        public object PartB(string input)
         {
             List<Password> passwords = ParseInput(input);
             return passwords

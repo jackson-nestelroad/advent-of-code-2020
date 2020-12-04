@@ -1,4 +1,5 @@
-﻿using System;
+﻿using AdventOfCode2020.Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -9,9 +10,9 @@ namespace AdventOfCode2020.Days
     {
         private const int Target = 2020;
 
-        private static int[] ParseInput(string[] input) => input.Select(num => int.Parse(num)).ToArray();
+        private static int[] ParseInput(string input) => input.Lines().Select(num => int.Parse(num)).ToArray();
 
-        public object PartA(string[] input)
+        public object PartA(string input)
         {
             int[] numbers = ParseInput(input);
 
@@ -31,7 +32,7 @@ namespace AdventOfCode2020.Days
             throw new SolutionFailedException();
         }
 
-        public object PartB(string[] input)
+        public object PartB(string input)
         {
             // Run part A algorithm, but anchor the third number of the sum at index i
             // So the target is now (Target - numbers[i])

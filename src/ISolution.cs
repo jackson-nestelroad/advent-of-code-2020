@@ -4,19 +4,19 @@ namespace AdventOfCode2020
 {
     public interface ISolution
     {
-        public abstract object PartA(string[] input);
-        public abstract object PartB(string[] input);
+        public abstract object PartA(string input);
+        public abstract object PartB(string input);
     }
 
     [AttributeUsage(AttributeTargets.Class, AllowMultiple = false)]
     public sealed class SolutionAttribute : Attribute
     {
+        public int Day { get; }
+
         public SolutionAttribute(int day)
         {
             Day = day;
         }
-
-        public int Day { get; }
     }
 
     [Serializable()]

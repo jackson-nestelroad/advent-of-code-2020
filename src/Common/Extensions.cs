@@ -27,5 +27,29 @@ namespace AdventOfCode2020.Common
         {
             return dict.TryGetValue(key, out V value) ? value : defaultValue;
         }
+
+        public static IEnumerable<int> To(this int start, int end, int step = 1)
+        {
+            if (step > 0)
+            {
+                while (start < end)
+                {
+                    yield return start;
+                    start += step;
+                }
+            }
+            else if (step < 0)
+            {
+                while (start > end)
+                {
+                    yield return start;
+                    start += step;
+                }
+            }
+            else
+            {
+                throw new ArgumentOutOfRangeException(nameof(step), "step cannot be zero");
+            }
+        }
     }
 }

@@ -13,19 +13,34 @@ namespace AdventOfCode2020.Common
         /// </summary>
         /// <param name="source">String to split</param>
         /// <returns>Array of lines</returns>
-        public static string[] Lines(this string source)
+        public static string[] Lines(this string source, int newlines = 1)
         {
-            string[] lines = source.Split(new string[] { "\r\n", "\n" }, StringSplitOptions.None);
+            string[] delims = { "\r\n", "\n" };
+            for (int i = 0; i < delims.Length; ++i)
+            {
+                delims[i] = string.Concat(Enumerable.Repeat(delims[i], newlines));
+            }
+
+            string[] lines = source.Split(delims, StringSplitOptions.None);
+
+            // Trailing element
             if (string.IsNullOrWhiteSpace(lines.Last()))
             {
                 lines = lines.Take(lines.Length - 1).ToArray();
             }
+            else
+            {
+                // Remove trailing newlines
+                foreach (string delim in delims)
+                {
+                    while (lines.Last().EndsWith(delim))
+                    {
+                        string before = lines[^1];
+                        lines[^1] = before.Substring(0, before.Length - delim.Length);
+                    }
+                }
+            }
             return lines;
-        }
-
-        public static V GetValue<K, V>(this Dictionary<K, V> dict, K key, V defaultValue = default)
-        {
-            return dict.TryGetValue(key, out V value) ? value : defaultValue;
         }
 
         public static IEnumerable<int> To(this int start, int end, int step = 1)

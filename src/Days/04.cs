@@ -31,42 +31,42 @@ namespace AdventOfCode2020.Days
             [PassportEntry(@"^(19[2-9][0-9]|200[0-2])$")]
             public string BirthYear
             {
-                get => Entries.GetValue("byr");
+                get => Entries.GetValueOrDefault("byr");
             }
             [PassportEntry(@"^20(1[0-9]|20)$")]
             public string IssueYear
             {
-                get => Entries.GetValue("iyr");
+                get => Entries.GetValueOrDefault("iyr");
             }
             [PassportEntry(@"^20(2[0-9]|30)$")]
             public string ExpirationYear
             {
-                get => Entries.GetValue("eyr");
+                get => Entries.GetValueOrDefault("eyr");
             }
             [PassportEntry(@"^((1([5-8][0-9]|9[0-3])cm)|((59|6[0-9]|7[0-6])in))$")]
             public string Height
             {
-                get => Entries.GetValue("hgt");
+                get => Entries.GetValueOrDefault("hgt");
             }
             [PassportEntry(@"^#[a-f0-9]{6}$")]
             public string HairColor
             {
-                get => Entries.GetValue("hcl");
+                get => Entries.GetValueOrDefault("hcl");
             }
             [PassportEntry("^(amb|blu|brn|gry|grn|hzl|oth)$")]
             public string EyeColor
             {
-                get => Entries.GetValue("ecl");
+                get => Entries.GetValueOrDefault("ecl");
             }
             [PassportEntry("^[0-9]{9}$")]
             public string PasswordId
             {
-                get => Entries.GetValue("pid");
+                get => Entries.GetValueOrDefault("pid");
             }
             [PassportEntry(".*", false)]
             public string CountryId
             {
-                get => Entries.GetValue("cid");
+                get => Entries.GetValueOrDefault("cid");
             }
 
             public void AddField(string key, string value) => Entries.Add(key, value);
@@ -110,7 +110,7 @@ namespace AdventOfCode2020.Days
         }
         private static List<Passport> ParseInput(string input)
         {
-            return input.Split(new string[] { "\r\n\r\n", "\n\n" }, StringSplitOptions.None).Select(data =>
+            return input.Lines(2).Select(data =>
             {
                 Passport passport = new Passport();
                 foreach (string field in data.TrimEnd().Split())

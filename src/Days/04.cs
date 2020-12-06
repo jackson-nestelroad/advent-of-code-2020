@@ -113,7 +113,7 @@ namespace AdventOfCode2020.Days
             return input.Lines(2).Select(data =>
             {
                 Passport passport = new Passport();
-                foreach (string field in data.TrimEnd().Split())
+                foreach (string field in data.Split())
                 {
                     int delimPos = field.IndexOf(':');
                     if (delimPos < 0)

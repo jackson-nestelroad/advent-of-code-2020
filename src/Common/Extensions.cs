@@ -8,6 +8,8 @@ namespace AdventOfCode2020.Common
 {
     static class Extensions
     {
+        private static readonly string[] Newlines = { "\r\n", "\n" };
+
         /// <summary>
         /// Splits the string into a series of lines as if read from a file. Uses <c>\r\n</c> and <c>\n</c> as delimiters.
         /// </summary>
@@ -15,13 +17,10 @@ namespace AdventOfCode2020.Common
         /// <returns>Array of lines</returns>
         public static string[] Lines(this string source, int newlines = 1)
         {
-            string[] delims = { "\r\n", "\n" };
-            for (int i = 0; i < delims.Length; ++i)
-            {
-                delims[i] = string.Concat(Enumerable.Repeat(delims[i], newlines));
-            }
-
-            string[] lines = source.Split(delims, StringSplitOptions.None);
+            string[] lines = source.Split(
+                Newlines.Select(delim => string.Concat(Enumerable.Repeat(delim, newlines))).ToArray(), 
+                StringSplitOptions.None
+            );
 
             // Trailing element
             if (string.IsNullOrWhiteSpace(lines.Last()))
@@ -31,7 +30,7 @@ namespace AdventOfCode2020.Common
             else
             {
                 // Remove trailing newlines
-                foreach (string delim in delims)
+                foreach (string delim in Newlines)
                 {
                     while (lines.Last().EndsWith(delim))
                     {

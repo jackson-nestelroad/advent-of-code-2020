@@ -32,6 +32,12 @@ namespace AdventOfCode2020
                 return 1;
             }
 
+            bool test = false;
+            if (args.Length >= 2 && bool.TryParse(args[1], out bool test_param))
+            {
+                test = test_param;
+            }
+
             // Find class for the given day's solution
             // Must implement ISolution and have SolutionAttribute
             var types = typeof(Program).Assembly.GetTypes();
@@ -48,7 +54,7 @@ namespace AdventOfCode2020
             }
 
             // Read input file
-            string fileName = $"./Input/{day:00}.txt";
+            string fileName = $"./{(test ? "Test " : "")}Input/{day:00}.txt";
             if (!File.Exists(fileName))
             {
                 Console.Error.WriteLine($"File \"{fileName}\" does not exist.");

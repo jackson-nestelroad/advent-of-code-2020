@@ -20,8 +20,17 @@ namespace AdventOfCode2020.Common
             Y = y;
         }
 
-        public static Point2D operator+(Point2D a, Point2D b) => new Point2D(a.X + b.X, a.Y + b.Y);
-        public static Point2D operator-(Point2D a, Point2D b) => new Point2D(a.X - b.X, a.Y - b.Y);
+        public Point2D Translate(int x = 0, int y = 0) => new Point2D(X + x, Y + y);
+
+        public void Deconstruct(out int x, out int y)
+        {
+            x = X;
+            y = Y;
+        }
+
+        public static Point2D operator +(Point2D a, Point2D b) => new Point2D(a.X + b.X, a.Y + b.Y);
+        public static Point2D operator -(Point2D a, Point2D b) => new Point2D(a.X - b.X, a.Y - b.Y);
+        public static Point2D operator *(Point2D p, int m) => new Point2D(m * p.X, m * p.Y);
 
         public override bool Equals(object? obj) => obj is Point2D other && Equals(other);
         public bool Equals(Point2D other) => X == other.X && Y == other.Y;

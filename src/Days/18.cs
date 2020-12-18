@@ -161,12 +161,7 @@ namespace AdventOfCode2020.Days
 
             Dictionary<string, Operator> operatorMap = operators.ToDictionary(op => op.Symbol);
 
-            long sum = 0;
-            foreach (string equation in equations)
-            {
-                sum += Evaluate(equation, operatorMap);
-            }
-            return sum;
+            return equations.Aggregate(0L, (sum, equation) => sum + Evaluate(equation, operatorMap));
         }
 
         public object PartB(string input)
@@ -182,12 +177,7 @@ namespace AdventOfCode2020.Days
 
             Dictionary<string, Operator> operatorMap = operators.ToDictionary(op => op.Symbol);
 
-            long sum = 0;
-            foreach (string equation in equations)
-            {
-                sum += Evaluate(equation, operatorMap);
-            }
-            return sum;
+            return equations.Aggregate(0L, (sum, equation) => sum + Evaluate(equation, operatorMap));
         }
     }
 }

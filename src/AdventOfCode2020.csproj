@@ -19,4 +19,15 @@
     </Content>
   </ItemGroup>
 
+  <ItemGroup>
+    <None Remove="Input\15.txt" />
+    <None Remove="Input\23.txt" />
+    <None Remove="Test Input\10.txt" />
+    <None Remove="Test Input\11.txt" />
+    <None Remove="Test Input\17.txt" />
+    <None Remove="Test Input\20.txt" />
+    <None Remove="Test Input\22.txt" />
+    <None Remove="Test Input\24.txt" />
+  </ItemGroup>
+
 </Project>
